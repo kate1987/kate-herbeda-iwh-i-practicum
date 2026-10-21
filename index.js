@@ -45,7 +45,32 @@ app.get('/update-cobj', (req, res) => {
 
 // * Code for Route 3 goes here
 
-/** 
+app.post('/update-cobj', async (req, res) => {
+    const newWebsite = {
+        properties: {
+            "name": req.body.name,
+            "client": req.body.client,
+            "platform": req.body.platform
+        }
+    }
+
+    const createWebsite = 'https://api.hubapi.com/crm/v3/objects/2-255275748';
+    const headers = {
+        Authorization: `Bearer ${PRIVATE_APP_ACCESS}`,
+        'Content-Type': 'application/json'
+    };
+
+    try {
+        await axios.post(createWebsite, newWebsite, { headers } );
+        res.redirect('/');
+    } catch(err) {
+        console.error(err);
+        res.status(500).send('Could not create website in HubSpot');
+    }
+
+});
+
+/**
 * * This is sample code to give you a reference for how you should structure your calls. 
 
 * * App.get sample
