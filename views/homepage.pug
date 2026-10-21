@@ -1,0 +1,21 @@
+doctype html
+html
+    head
+        title= `${title}`
+        meta(name="viewport" content="width=device-width, initial-scale=1")
+        link(rel="stylesheet", href="/css/style.css")
+    body
+        h1 Websites
+        a(href="/update-cobj") Add to this table
+        table
+            thead
+                tr
+                    th Name
+                    th Client
+                    th Platform
+            tbody
+                each item in data
+                    tr
+                        td #{item.properties.name}
+                        td #{item.properties.client}
+                        td #{item.properties.platform}
